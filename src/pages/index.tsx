@@ -6,6 +6,7 @@ import {
 	useDisconnect,
 	useNetwork,
 	useSwitchNetwork,
+	useBalance,
 } from 'wagmi';
 import { SendTransaction } from '@/components/SendTransaction';
 import { SignMessage } from '@/components/SignMessage';
@@ -21,6 +22,10 @@ const Index = () => {
 	const { chain } = useNetwork();
 	const { chains, error, isLoading, pendingChainId, switchNetwork } =
 		useSwitchNetwork();
+
+	const { data } = useBalance({
+		address,
+	});
 
 	return (
 		<div>
@@ -54,6 +59,7 @@ const Index = () => {
 
 					<div>{error && error.message}</div>
 					<div>Connected to {connector?.name}</div>
+					<div>{`Your balance is: ${data?.formatted} ${data?.symbol}`}</div>
 					<button onClick={disconnectMe}>Disconnect</button>
 					<hr />
 					<SendTransaction />
