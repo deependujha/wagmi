@@ -1,15 +1,17 @@
 import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { SendTransaction } from '@/components/SendTransaction';
 
 const Index = () => {
 	const { address, connector, isConnected } = useAccount();
-	const { connect, connectors, error,isLoading, pendingConnector } = useConnect();
+	const { connect, connectors, error, isLoading, pendingConnector } =
+		useConnect();
 	const { disconnect } = useDisconnect();
 	const disconnectMe = () => {
 		disconnect();
 	};
-	
+
 	return (
 		<div>
 			<ConnectButton showBalance={false} />
@@ -20,8 +22,9 @@ const Index = () => {
 					<div>Your address is: {address}</div>
 					<div>Connected to {connector?.name}</div>
 					<button onClick={disconnectMe}>Disconnect</button>
+					<hr />
+					<SendTransaction />
 				</div>
-
 			)}
 		</div>
 	);
