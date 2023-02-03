@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useNetwork } from 'wagmi';
 import { SendTransaction } from '@/components/SendTransaction';
 
 const Index = () => {
@@ -12,6 +12,8 @@ const Index = () => {
 		disconnect();
 	};
 
+	const { chain, chains } = useNetwork();
+
 	return (
 		<div>
 			<ConnectButton showBalance={false} />
@@ -20,6 +22,17 @@ const Index = () => {
 				<div>
 					{/* <img src={ensAvatar} alt="ENS Avatar" /> */}
 					<div>Your address is: {address}</div>
+					{chain && <div>Connected to {chain.name}</div>}
+					{chains && (
+						<div>
+							Available chains:{' '}
+							{chains.map((chain, idx) => (
+								<div key={idx} style={{ color: 'blue' }}>
+									{chain.name}
+								</div>
+							))}
+						</div>
+					)}
 					<div>Connected to {connector?.name}</div>
 					<button onClick={disconnectMe}>Disconnect</button>
 					<hr />
