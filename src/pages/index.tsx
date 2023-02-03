@@ -8,6 +8,7 @@ import {
 	useSwitchNetwork,
 } from 'wagmi';
 import { SendTransaction } from '@/components/SendTransaction';
+import { SignMessage } from '@/components/SignMessage';
 
 const Index = () => {
 	const { address, connector, isConnected } = useAccount();
@@ -56,6 +57,8 @@ const Index = () => {
 					<button onClick={disconnectMe}>Disconnect</button>
 					<hr />
 					<SendTransaction />
+					<hr />
+					<SignMessage />
 				</div>
 			)}
 		</div>
