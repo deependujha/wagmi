@@ -33,19 +33,30 @@ export function SendTransaction() {
 				sendTransaction?.();
 			}}
 		>
+			<div className="font-bold text-2xl text-green-700 underline text-center my-3">
+				Send transcation
+			</div>
 			<input
+				style={{ border: '2px solid black' }}
 				aria-label="Recipient"
 				onChange={(e) => setTo(e.target.value)}
 				placeholder="0xA0Cf…251e"
 				value={to}
 			/>
+			<div />
 			<input
+				style={{ border: '2px solid black' }}
 				aria-label="Amount (ether)"
 				onChange={(e) => setAmount(e.target.value)}
 				placeholder="0.05"
 				value={amount}
 			/>
-			<button disabled={isLoading || !sendTransaction || !to || !amount}>
+			<div />
+			<button
+				disabled={isLoading || !sendTransaction || !to || !amount}
+				style={{ borderRadius: '15px' }}
+				className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 px-5 text-white font-bold"
+			>
 				{isLoading ? 'Sending...' : 'Send'}
 			</button>
 			{isSuccess && (

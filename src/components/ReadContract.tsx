@@ -21,7 +21,9 @@ const ReadContract = () => {
 
 	return (
 		<div>
-			<button onClick={() => {}}>Read from the contract</button>
+			<div className="font-bold text-2xl text-green-700 underline text-center my-3">
+				Read from the contract
+			</div>
 			<div>Read value is: {readValue}</div>
 		</div>
 	);

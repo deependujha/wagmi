@@ -21,13 +21,23 @@ export function SignMessage() {
 				signMessage({ message });
 			}}
 		>
+			<div className="font-bold text-2xl text-green-700 underline text-center my-3">
+				Sign & verify a message
+			</div>
 			<label htmlFor="message">Enter a message to sign</label>
+			<div />
 			<textarea
 				id="message"
 				name="message"
 				placeholder="The quick brown fox…"
+				style={{ border: '2px solid black' }}
 			/>
-			<button disabled={isLoading}>
+			<div />
+			<button
+				disabled={isLoading}
+				style={{ borderRadius: '15px' }}
+				className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 px-5 text-white font-bold"
+			>
 				{isLoading ? 'Check Wallet' : 'Sign Message'}
 			</button>
 
