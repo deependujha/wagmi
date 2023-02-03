@@ -10,6 +10,7 @@ import {
 } from 'wagmi';
 import { SendTransaction } from '@/components/SendTransaction';
 import { SignMessage } from '@/components/SignMessage';
+import ReadContract from '@/components/ReadContract';
 
 const Index = () => {
 	const { address, connector, isConnected } = useAccount();
@@ -65,6 +66,8 @@ const Index = () => {
 					<SendTransaction />
 					<hr />
 					<SignMessage />
+					<hr />
+					<ReadContract />
 				</div>
 			)}
 		</div>
