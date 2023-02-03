@@ -1,18 +1,25 @@
 import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount, useConnect, useDisconnect, useNetwork } from 'wagmi';
+import {
+	useAccount,
+	useConnect,
+	useDisconnect,
+	useNetwork,
+	useSwitchNetwork,
+} from 'wagmi';
 import { SendTransaction } from '@/components/SendTransaction';
 
 const Index = () => {
 	const { address, connector, isConnected } = useAccount();
-	const { connect, connectors, error, isLoading, pendingConnector } =
-		useConnect();
+
 	const { disconnect } = useDisconnect();
 	const disconnectMe = () => {
 		disconnect();
 	};
 
-	const { chain, chains } = useNetwork();
+	const { chain } = useNetwork();
+	const { chains, error, isLoading, pendingChainId, switchNetwork } =
+		useSwitchNetwork();
 
 	return (
 		<div>
@@ -33,6 +40,18 @@ const Index = () => {
 							))}
 						</div>
 					)}
+					{chains.map((x) => (
+						<button
+							disabled={!switchNetwork || x.id === chain?.id}
+							key={x.id}
+							onClick={() => switchNetwork?.(x.id)}
+						>
+							{x.name}
+							{isLoading && pendingChainId === x.id && ' (switching)'}
+						</button>
+					))}
+
+					<div>{error && error.message}</div>
 					<div>Connected to {connector?.name}</div>
 					<button onClick={disconnectMe}>Disconnect</button>
 					<hr />
