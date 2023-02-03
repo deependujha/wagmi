@@ -11,6 +11,7 @@ import {
 import { SendTransaction } from '@/components/SendTransaction';
 import { SignMessage } from '@/components/SignMessage';
 import ReadContract from '@/components/ReadContract';
+import WriteContract from '@/components/WriteContract';
 
 const Index = () => {
 	const { address, connector, isConnected } = useAccount();
@@ -29,7 +30,7 @@ const Index = () => {
 	});
 
 	return (
-		<div>
+		<div className="mx-4 my-4 ">
 			<ConnectButton showBalance={false} />
 			<hr />
 			{isConnected && (
@@ -68,6 +69,8 @@ const Index = () => {
 					<SignMessage />
 					<hr />
 					<ReadContract />
+					<hr />
+					<WriteContract />
 				</div>
 			)}
 		</div>

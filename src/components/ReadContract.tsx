@@ -13,7 +13,8 @@ const ReadContract = () => {
 		onError(error) {
 			console.log('Error', error);
 		},
-		onSuccess(data) {
+		onSuccess(data: string) {
+			setReadValue(data);
 			console.log('Success', data);
 		},
 	});
